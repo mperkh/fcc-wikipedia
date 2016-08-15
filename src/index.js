@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import './index.css';
-import $ from 'jquery';
+import reqwest from 'reqwest';
 import { Grid } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
@@ -10,7 +10,6 @@ import { FormControl } from 'react-bootstrap';
 import { Alert } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { ButtonToolbar } from 'react-bootstrap';
-
 
 class Article extends Component {
   render() {
@@ -37,10 +36,9 @@ class SearchResults extends Component {
   };
 
   callWikipediaAPI(searchString) {
-    $.ajax({
-      url: 'http://en.wikipedia.org/w/api.php',
-      contentType: "application/json; charset=utf-8",
-      dataType: 'jsonp',
+    reqwest({
+      url: 'https://en.wikipedia.org/w/api.php',
+      type: 'jsonp',
       data: {
         'action': 'opensearch',
         'format': 'json',
@@ -51,9 +49,6 @@ class SearchResults extends Component {
           searchString: searchString,
           result: result
         });
-      },
-      error: () => {
-        console.log('error');
       }
     });
   };
