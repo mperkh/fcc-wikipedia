@@ -11,18 +11,14 @@ import { Alert } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { ButtonToolbar } from 'react-bootstrap';
 
-class Article extends Component {
-  render() {
-    return (
-      <a href={this.props.url} target="_blank" className="list-group-item">
-        <h3>{this.props.title}</h3>
-        <p>
-          {this.props.children}
-        </p>
-      </a>
-    );
-  }
-}
+const Article = (props) => (
+  <a href={props.url} target="_blank" className="list-group-item">
+    <h3>{props.title}</h3>
+    <p>
+      {props.children}
+    </p>
+  </a>
+);
 
 class SearchResults extends Component {
   constructor(props, context) {
@@ -172,19 +168,15 @@ class SearchBox extends Component {
   }
 }
 
-class App extends Component {
-  render() {
-    return (
-      <Grid fluid={true}>
-        <Row className="App">
-          <Col lg={8} lgOffset={2}>
-            <SearchResults />
-          </Col>
-        </Row>
-      </Grid>
-    );
-  }
-}
+const App = () => (
+  <Grid fluid={true}>
+    <Row className="App">
+      <Col lg={8} lgOffset={2}>
+        <SearchResults />
+      </Col>
+    </Row>
+  </Grid>
+);
 
 ReactDOM.render(
   <App />,
